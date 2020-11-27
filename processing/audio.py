@@ -9,8 +9,19 @@ def down_audio(vurl) -> str:
 
     audip_opt.download('processing/output')
 
-    print('Done!')
-    
-down_audio(sys.argv[1])
+    if '.' in yt.title:
+        title = f'{yt.title}mp4'
+    else:
+        title = f'{yt.title}.mp4'  
+
+    return title    
+
+#down_audio(sys.argv[1])
+
+def processing(arg):
+    title = down_audio(arg)
+    return title
+
+processing(sys.argv[1])
 
 sys.stdout.flush()

@@ -21,14 +21,12 @@ app.post('/audio', (req, res) => {
     var process = spawn('python', ['../processing/audio.py', url['phrase']]);
 
     process.stdout.on('data', function (data) {
-       
-       const file = `..${__dirname}/output/`
-       
-        //res.download(data);
+        
+        res.send('Done!')
 
-        res.download(data)
+        res.send(data)
+
     })
-
 
 });
 
