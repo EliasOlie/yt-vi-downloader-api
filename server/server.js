@@ -1,14 +1,11 @@
 const { json } = require('body-parser');
 const express = require('express');
-const { dirname } = require('path');
 
 var app = express();
 
-var port = 8000
-
 app.use(express.json());
 
-app.get('/', (req, res) => {
+app.get('/', (req, res) => { //Teste para server
     res.send('Okay!')
 })
 
@@ -17,14 +14,19 @@ app.post('/audio', (req, res) => {
     
     const url = req.body;
 
-
     var process = spawn('python', ['../processing/audio.py', url['phrase']]);
+
 
     process.stdout.on('data', function (data) {
         
-        res.send('Done!')
+        res.send('<h1>Done!<h1/>')
 
-        res.send(data)
+        var title = data.toString()
+
+        //res.send(`<h1>${title}<h1/>`)
+        
+
+        //res.download(`processing/output/a.mp4`)
 
     })
 
@@ -43,4 +45,4 @@ app.post('/audio', (req, res) => {
 
 // });
 
-app.listen(process.env.PORT || port)
+app.listen(process.env.PORT || 8000)

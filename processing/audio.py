@@ -8,20 +8,29 @@ def down_audio(vurl) -> str:
     audip_opt = yt.streams.get_audio_only()
 
     audip_opt.download('processing/output')
+ 
+def title(args):
+    yt = YouTube(args)
 
     if '.' in yt.title:
         title = f'{yt.title}mp4'
     else:
-        title = f'{yt.title}.mp4'  
+        title = f'{yt.title}.mp4'
+    
+    return {"Error":False, "Title":title}   
 
-    return title    
+def processing(link):
+    
+    #down_audio(link)    
+    
+    titulo = title(link)
 
-#down_audio(sys.argv[1])
+    return print(titulo['Title'])
 
-def processing(arg):
-    title = down_audio(arg)
-    return title
+# print('Abaixo vem a saida:') DEBUG
+# print(sys.argv[1])
 
-processing(sys.argv[1])
+#processing(sys.argv[1])
+processing('https://www.youtube.com/watch?v=DHLPuJNIHzw&ab_channel=EliasOliveira-JornadaDev')
 
 sys.stdout.flush()

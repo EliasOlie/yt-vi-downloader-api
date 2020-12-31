@@ -11,6 +11,6 @@ def down_video(vurl) -> str:
 
     print('Done!')
     
-down_video(sys.argv)
+down_video(sys.argv[1])
 
 sys.stdout.flush()
