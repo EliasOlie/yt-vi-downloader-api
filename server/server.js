@@ -16,33 +16,25 @@ app.post('/audio', (req, res) => {
 
     var process = spawn('python', ['../processing/audio.py', url['phrase']]);
 
-
     process.stdout.on('data', function (data) {
         
-        res.send('<h1>Done!<h1/>')
-
         var title = data.toString()
 
-        //res.send(`<h1>${title}<h1/>`)
-        
+        console.log(title)
 
-        //res.download(`processing/output/a.mp4`)
+        res.send(`<h1>${title}<h1/>`)
 
+        res.sendFile('D:/GitHub/yt-vi-downloader-api/server/processing/output')
     })
 
 });
 
-// app.post('/phrase', (req, res) =>{
+app.get('/a/:resp', (req, res) => {
+    va = req.params.resp
     
-//     var spawn = require('child_process').spawn
-//     const phrase = req.body;
+    console.log(va.toString())
 
-//     var process = spawn('python', ['./my_script.py', phrase['phrase']]);
-
-//     process.stdout.on('data', function (data) {
-//         res.send(data.toString());
-//     })
-
-// });
+    res.send(`Ao ${va.toString()}`)
+})
 
 app.listen(process.env.PORT || 8000)
